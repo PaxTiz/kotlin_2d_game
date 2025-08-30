@@ -6,13 +6,15 @@ import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
 
 fun main() {
+	val debug = System.getenv("DEBUG") == "true"
+	
 	Raylib.InitWindow(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, "Hello From Raylib !")
 	
 	Raylib.SetConfigFlags(Raylib.FLAG_VSYNC_HINT)
 	Raylib.SetTargetFPS(60)
 	
-	val game = Game(true)
-	
+	val game = Game(debug)
+
 	while (!Raylib.WindowShouldClose()) {
 		Raylib.BeginDrawing()
 		Raylib.BeginMode2D(game.camera.camera)
