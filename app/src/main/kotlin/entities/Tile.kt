@@ -41,7 +41,7 @@ class Tile : Entity {
 				texture = textures.map,
 				position = Raylib.Vector2().x((tile.x * (16 * Constants.TEXTURE_SCALING)).toFloat()).y((tile.y * (16 * Constants.TEXTURE_SCALING)).toFloat()),
 				spritesheetPosition = position,
-				size = Raylib.Vector2Zero(),
+				size = Raylib.Vector2().x(16F).y(16F),
 				collisionRect = Raylib.Rectangle(),
 				layer = tile.layer,
 				solid = tile.solid == 1,

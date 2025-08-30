@@ -16,12 +16,12 @@ object Constants {
 	const val TILE_HEIGHT = 32
 	
 	val TEXTURES_SPRITESHEET_POSITIONS = mapOf(
-		"__empty__" to Raylib.Vector2().x((-1).spritesheetPosition()).y((-1).spritesheetPosition()),
+		"__empty__" to Raylib.Vector2().x(1.spritesheetPosition()).y(1.spritesheetPosition()),
 		
 		// Water
-		"pool_top_left_corner" to Raylib.Vector2().x(3.spritesheetPosition()).y(0.spritesheetPosition()),
-		"pool_top_center" to Raylib.Vector2().x(4.spritesheetPosition()).y(0.spritesheetPosition()),
-		"pool_top_right_corner" to Raylib.Vector2().x(5.spritesheetPosition()).y(0.spritesheetPosition()),
+		"pool_top_left_corner" to Raylib.Vector2().x(3.spritesheetPosition()).y(0F),
+		"pool_top_center" to Raylib.Vector2().x(4.spritesheetPosition()).y(0F),
+		"pool_top_right_corner" to Raylib.Vector2().x(5.spritesheetPosition()).y(0F),
 		"pool_side_left" to Raylib.Vector2().x(3.spritesheetPosition()).y(2.spritesheetPosition()),
 		"pool_full_water" to Raylib.Vector2().x(4.spritesheetPosition()).y(2.spritesheetPosition()),
 		"pool_side_right" to Raylib.Vector2().x(5.spritesheetPosition()).y(2.spritesheetPosition()),
@@ -30,22 +30,22 @@ object Constants {
 		"pool_bottom_right_corner" to Raylib.Vector2().x(5.spritesheetPosition()).y(3.spritesheetPosition()),
 		
 		// Grass
-		"grass_1" to Raylib.Vector2().x(6.spritesheetPosition()).y(0.spritesheetPosition()),
+		"grass_1" to Raylib.Vector2().x(6.spritesheetPosition()).y(1.spritesheetPosition()),
 		"grass_2" to Raylib.Vector2().x(6.spritesheetPosition()).y(1.spritesheetPosition()),
 		
 		// Dirt
-		"dirt_1" to Raylib.Vector2().x(7.spritesheetPosition()).y(0.spritesheetPosition()),
+		"dirt_1" to Raylib.Vector2().x(7.spritesheetPosition()).y(1.spritesheetPosition()),
 		"dirt_2" to Raylib.Vector2().x(7.spritesheetPosition()).y(1.spritesheetPosition()),
 		"dirth_path_top_left_corner" to Raylib.Vector2().x(8.spritesheetPosition()).y(8.spritesheetPosition()),
 		"dirth_path_top_right_corner" to Raylib.Vector2().x(9.spritesheetPosition()).y(8.spritesheetPosition()),
 		"dirth_path_bottom_left_corner" to Raylib.Vector2().x(8.spritesheetPosition()).y(9.spritesheetPosition()),
 		"dirth_path_bottom_right_corner" to Raylib.Vector2().x(9.spritesheetPosition()).y(9.spritesheetPosition()),
-		"dirth_path_top_end" to Raylib.Vector2().x(7.spritesheetPosition()).y(2.spritesheetPosition()),
-		"dirth_path_bottom_end" to Raylib.Vector2().x(6.spritesheetPosition()).y(2.spritesheetPosition()),
-		"dirth_path_left_end" to Raylib.Vector2().x(7.spritesheetPosition()).y(3.spritesheetPosition()),
-		"dirth_path_right_end" to Raylib.Vector2().x(6.spritesheetPosition()).y(3.spritesheetPosition()),
-		"dirth_path_vertical" to Raylib.Vector2().x(0.spritesheetPosition()).y(8.spritesheetPosition()),
-		"dirth_path_horizontal" to Raylib.Vector2().x(0.spritesheetPosition()).y(9.spritesheetPosition()),
+		"dirth_path_top_end" to Raylib.Vector2().x(7.spritesheetPosition()).y(12.spritesheetPosition()),
+		"dirth_path_bottom_end" to Raylib.Vector2().x(6.spritesheetPosition()).y(12.spritesheetPosition()),
+		"dirth_path_left_end" to Raylib.Vector2().x(7.spritesheetPosition()).y(13.spritesheetPosition()),
+		"dirth_path_right_end" to Raylib.Vector2().x(6.spritesheetPosition()).y(13.spritesheetPosition()),
+		"dirth_path_vertical" to Raylib.Vector2().x(10.spritesheetPosition()).y(8.spritesheetPosition()),
+		"dirth_path_horizontal" to Raylib.Vector2().x(10.spritesheetPosition()).y(9.spritesheetPosition()),
 		
 		// Green tree
 		"tree_green_pic_top" to Raylib.Vector2().x(17.spritesheetPosition()).y(11.spritesheetPosition()),
