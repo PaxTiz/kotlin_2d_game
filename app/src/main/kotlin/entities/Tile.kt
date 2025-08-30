@@ -4,7 +4,9 @@ import com.raylib.Colors
 import com.raylib.Raylib
 import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
+import fr.vcernuta.app.utils.Rectangle
 import fr.vcernuta.app.utils.Textures
+import fr.vcernuta.app.utils.Vector2
 import fr.vcernuta.app.world.RawTile
 
 class Tile : Entity {
@@ -14,10 +16,10 @@ class Tile : Entity {
 	
 	private constructor(
 		texture: Raylib.Texture,
-		size: Raylib.Vector2,
-		position: Raylib.Vector2,
-		spritesheetPosition: Raylib.Vector2,
-		collisionRect: Raylib.Rectangle,
+		size: Vector2,
+		position: Vector2,
+		spritesheetPosition: Vector2,
+		collisionRect: Rectangle,
 		layer: Int,
 		solid: Boolean,
 	) : super(
@@ -34,15 +36,18 @@ class Tile : Entity {
 	
 	companion object {
 		fun fromRawTile(tile: RawTile, textures: Textures): Tile {
-			val spritesheetPositions = Constants.TEXTURES_SPRITESHEET_POSITIONS;
+			val spritesheetPositions = Constants.TEXTURES_SPRITESHEET_POSITIONS
 			val position = spritesheetPositions[tile.texture]!!
 			
 			return Tile(
 				texture = textures.map,
-				position = Raylib.Vector2().x((tile.x * (16 * Constants.TEXTURE_SCALING)).toFloat()).y((tile.y * (16 * Constants.TEXTURE_SCALING)).toFloat()),
+				position = Vector2(
+					x = (tile.x * (16 * Constants.TEXTURE_SCALING).toDouble()),
+					y = (tile.y * (16 * Constants.TEXTURE_SCALING).toDouble()),
+				),
 				spritesheetPosition = position,
-				size = Raylib.Vector2().x(16F).y(16F),
-				collisionRect = Raylib.Rectangle(),
+				size = Vector2(16.toDouble(), 16.toDouble()),
+				collisionRect = Rectangle.zero(),
 				layer = tile.layer,
 				solid = tile.solid == 1,
 			)
@@ -50,27 +55,29 @@ class Tile : Entity {
 	}
 	
 	override fun render(game: Game) {
-		val source = Raylib.Rectangle()
-			.x(spritesheetPosition.x())
-			.y(spritesheetPosition.y())
-			.width(size.x())
-			.height(size.y())
+		val source = Rectangle(
+			x = spritesheetPosition.x,
+			y = spritesheetPosition.y,
+			width = size.x,
+			height = size.y,
+		)
 		
-		val destination = Raylib.Rectangle()
-			.x(position.x())
-			.y(position.y())
-			.width(size.x() * Constants.TEXTURE_SCALING)
-			.height(size.y() * Constants.TEXTURE_SCALING)
+		val destination = Rectangle(
+			x = position.x,
+			y = position.y,
+			width = size.x * Constants.TEXTURE_SCALING,
+			height = size.y * Constants.TEXTURE_SCALING,
+		)
 		
-		val origin = Raylib.Vector2().x(0F).y(0F)
+		val origin = Vector2.zero()
 		
-		Raylib.DrawTexturePro(texture, source, destination, origin, 0F, Colors.WHITE)
+		Raylib.DrawTexturePro(texture, source.rl(), destination.rl(), origin.rl(), 0F, Colors.WHITE)
 		
 		if (game.debug) {
-			Raylib.DrawRectangleLinesEx(destination, 1F, Colors.RED)
+			Raylib.DrawRectangleLinesEx(destination.rl(), 1F, Colors.RED)
 			
 			if (solid) {
-				Raylib.DrawRectangleRec(destination, Raylib.ColorAlpha(Colors.RED, 0.4F))
+				Raylib.DrawRectangleRec(destination.rl(), Raylib.ColorAlpha(Colors.RED, 0.4F))
 			}
 		}
 	}

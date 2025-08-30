@@ -2,6 +2,8 @@ package fr.vcernuta.app.entities
 
 import com.raylib.Raylib
 import fr.vcernuta.app.game.Game
+import fr.vcernuta.app.utils.Rectangle
+import fr.vcernuta.app.utils.Vector2
 
 abstract class Entity {
 	
@@ -11,16 +13,16 @@ abstract class Entity {
 	var texture: Raylib.Texture
 		private set
 	
-	var size: Raylib.Vector2
+	var size: Vector2
 		private set
 	
-	var position: Raylib.Vector2
+	var position: Vector2
 		private set
 	
-	var spritesheetPosition: Raylib.Vector2
+	var spritesheetPosition: Vector2
 		private set
 	
-	var collisionRect: Raylib.Rectangle
+	var collisionRect: Rectangle
 		private set
 	
 	var layer: Int
@@ -29,10 +31,10 @@ abstract class Entity {
 	constructor(
 		id: Int,
 		texture: Raylib.Texture,
-		size: Raylib.Vector2,
-		position: Raylib.Vector2,
-		spritesheetPosition: Raylib.Vector2,
-		collisionRect: Raylib.Rectangle,
+		size: Vector2,
+		position: Vector2,
+		spritesheetPosition: Vector2,
+		collisionRect: Rectangle,
 		layer: Int,
 	) {
 		this.id = id
@@ -48,8 +50,8 @@ abstract class Entity {
 		this.id = id
 	}
 	
-	fun asRect(): Raylib.Rectangle {
-		return Raylib.Rectangle().x(position.x()).y(position.y()).width(size.x()).y(size.y())
+	fun asRect(): Rectangle {
+		return Rectangle(position.x, position.y, size.x, size.y)
 	}
 	
 	abstract fun render(game: Game)

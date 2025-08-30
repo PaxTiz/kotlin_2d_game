@@ -2,7 +2,9 @@ package fr.vcernuta.app.world
 
 import com.raylib.Raylib
 import fr.vcernuta.app.entities.Tile
+import fr.vcernuta.app.utils.Rectangle
 import fr.vcernuta.app.utils.Textures
+import fr.vcernuta.app.utils.Vector2
 
 class World {
 	
@@ -14,12 +16,18 @@ class World {
 		this.tiles = world.map { Tile.fromRawTile(it, textures) }
 	}
 	
-	fun findSolidTilesMatchingDirection(direction: Raylib.Vector2): List<Tile> {
+	fun findSolidTilesMatchingDirection(direction: Vector2): List<Tile> {
 		val tiles = mutableListOf<Tile>()
 		
 		for (tile in this.tiles) {
-			val rect = Raylib.Rectangle().x(direction.x()).y(direction.y()).width(32F).height(32F)
-			if (tile.solid && Raylib.CheckCollisionRecs(tile.asRect(), rect)) {
+			val rect = Rectangle(
+				x = direction.x,
+				y = direction.y,
+				width = 32.toDouble(),
+				height = 32.toDouble()
+			)
+			
+			if (tile.solid && Raylib.CheckCollisionRecs(tile.asRect().rl(), rect.rl())) {
 				tiles.add(tile)
 			}
 		}
