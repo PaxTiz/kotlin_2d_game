@@ -1,3 +1,5 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+
 plugins {
 	// Apply the shared build logic from a convention plugin.
 	// The shared code is located in `buildSrc/src/main/kotlin/kotlin-jvm.gradle.kts`.
@@ -8,11 +10,14 @@ plugins {
 }
 
 dependencies {
+	implementation("uk.co.electronstudio.jaylib:jaylib:5.5.+")
 	// implementation(project(":level_editor"))
 }
 
 application {
-	// Define the Fully Qualified Name for the application main class
-	// (Note that Kotlin compiles `App.kt` to a class with FQN `com.example.app.AppKt`.)
+	if (DefaultNativePlatform.getCurrentOperatingSystem().isMacOsX) {
+		applicationDefaultJvmArgs = listOf("-XstartOnFirstThread")
+	}
+	
 	mainClass = "fr.vcernuta.app.AppKt"
 }
