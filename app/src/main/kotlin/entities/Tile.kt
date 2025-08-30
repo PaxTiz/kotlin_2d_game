@@ -68,6 +68,10 @@ class Tile : Entity {
 		
 		if (game.debug) {
 			Raylib.DrawRectangleLinesEx(destination, 1F, Colors.RED)
+			
+			if (solid) {
+				Raylib.DrawRectangleRec(destination, Raylib.ColorAlpha(Colors.RED, 0.4F))
+			}
 		}
 	}
 	

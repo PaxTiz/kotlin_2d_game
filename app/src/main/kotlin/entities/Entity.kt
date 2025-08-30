@@ -48,6 +48,10 @@ abstract class Entity {
 		this.id = id
 	}
 	
+	fun asRect(): Raylib.Rectangle {
+		return Raylib.Rectangle().x(position.x()).y(position.y()).width(size.x()).y(size.y())
+	}
+	
 	abstract fun render(game: Game)
 	abstract fun handleKeyboardEvents(game: Game, delta: Float)
 	
