@@ -2,6 +2,7 @@ package fr.vcernuta.app.entities
 
 import com.raylib.Raylib
 import fr.vcernuta.app.game.Game
+import fr.vcernuta.app.utils.Constants
 import fr.vcernuta.app.utils.Rectangle
 import fr.vcernuta.app.utils.Vector2
 
@@ -51,7 +52,12 @@ abstract class Entity {
 	}
 	
 	fun asRect(): Rectangle {
-		return Rectangle(position.x, position.y, size.x, size.y)
+		return Rectangle(
+			x = position.x,
+			y = position.y,
+			width = size.x * Constants.TEXTURE_SCALING,
+			height = size.y * Constants.TEXTURE_SCALING
+		)
 	}
 	
 	abstract fun render(game: Game)
