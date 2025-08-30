@@ -21,3 +21,14 @@ application {
 	
 	mainClass = "fr.vcernuta.app.AppKt"
 }
+
+distributions {
+	main {
+		contents {
+			from("$rootDir/resources") {
+				into("resources")
+			}
+		}
+	}
+}
+
