@@ -2,9 +2,9 @@ package fr.vcernuta.app.world
 
 import com.raylib.Raylib
 import fr.vcernuta.app.entities.Tile
-import fr.vcernuta.app.utils.Rectangle
 import fr.vcernuta.app.utils.Textures
-import fr.vcernuta.app.utils.Vector2
+import fr.vcernuta.utils.wrappers.Rectangle
+import fr.vcernuta.utils.wrappers.Vector2
 
 class World {
 	

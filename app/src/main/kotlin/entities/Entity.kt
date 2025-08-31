@@ -3,8 +3,8 @@ package fr.vcernuta.app.entities
 import com.raylib.Raylib
 import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
-import fr.vcernuta.app.utils.Rectangle
-import fr.vcernuta.app.utils.Vector2
+import fr.vcernuta.utils.wrappers.Rectangle
+import fr.vcernuta.utils.wrappers.Vector2
 
 abstract class Entity {
 	

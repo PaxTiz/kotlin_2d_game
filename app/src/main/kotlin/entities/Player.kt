@@ -4,9 +4,9 @@ import com.raylib.Colors
 import com.raylib.Raylib
 import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
-import fr.vcernuta.app.utils.Rectangle
 import fr.vcernuta.app.utils.Textures
-import fr.vcernuta.app.utils.Vector2
+import fr.vcernuta.utils.wrappers.Rectangle
+import fr.vcernuta.utils.wrappers.Vector2
 
 const val PLAYER_SPEED = 150
 

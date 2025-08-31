@@ -4,10 +4,11 @@ import com.raylib.Colors
 import com.raylib.Raylib
 import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
-import fr.vcernuta.app.utils.Rectangle
 import fr.vcernuta.app.utils.Textures
-import fr.vcernuta.app.utils.Vector2
 import fr.vcernuta.app.world.RawTile
+import fr.vcernuta.utils.textures.getTexturePosition
+import fr.vcernuta.utils.wrappers.Rectangle
+import fr.vcernuta.utils.wrappers.Vector2
 
 class Tile : Entity {
 	
@@ -36,8 +37,7 @@ class Tile : Entity {
 	
 	companion object {
 		fun fromRawTile(tile: RawTile, textures: Textures): Tile {
-			val spritesheetPositions = Constants.TEXTURES_SPRITESHEET_POSITIONS
-			val position = spritesheetPositions[tile.texture]!!
+			val position = getTexturePosition(tile.texture)
 			
 			return Tile(
 				texture = textures.map,

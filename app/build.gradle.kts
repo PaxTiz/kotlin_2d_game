@@ -10,7 +10,7 @@ plugins {
 }
 
 dependencies {
-	// implementation(project(":level_editor"))
+	implementation(project(":utils"))
 }
 
 application {

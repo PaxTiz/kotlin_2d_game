@@ -4,7 +4,7 @@ import com.raylib.Raylib
 import fr.vcernuta.app.entities.Player
 import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
-import fr.vcernuta.app.utils.Vector2
+import fr.vcernuta.utils.wrappers.Vector2
 
 class Camera {
 	
