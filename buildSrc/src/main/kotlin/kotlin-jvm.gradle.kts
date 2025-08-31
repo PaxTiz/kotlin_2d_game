@@ -10,10 +10,6 @@ kotlin {
 	jvmToolchain(20)
 }
 
-dependencies {
-	implementation("uk.co.electronstudio.jaylib:jaylib:5.5.+")
-}
-
 tasks.withType<Test>().configureEach {
 	useJUnitPlatform()
 	

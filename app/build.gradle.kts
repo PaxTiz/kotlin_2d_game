@@ -10,6 +10,7 @@ plugins {
 }
 
 dependencies {
+	implementation(libs.raylib)
 	implementation(project(":utils"))
 }
 
