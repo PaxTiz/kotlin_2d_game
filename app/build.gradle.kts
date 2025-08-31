@@ -10,7 +10,6 @@ plugins {
 }
 
 dependencies {
-	implementation("uk.co.electronstudio.jaylib:jaylib:5.5.+")
 	// implementation(project(":level_editor"))
 }
 
@@ -31,4 +30,3 @@ distributions {
 		}
 	}
 }
-
