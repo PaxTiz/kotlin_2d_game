@@ -1,7 +1,8 @@
-package fr.vcernuta.app.entities
+package fr.vcernuta.app.entities.player
 
 import com.raylib.Colors
 import com.raylib.Raylib
+import fr.vcernuta.app.entities.animation.AnimableEntity
 import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
 import fr.vcernuta.app.utils.Textures
@@ -10,8 +11,7 @@ import fr.vcernuta.utils.wrappers.Vector2
 
 const val PLAYER_SPEED = 150
 
-class Player : Entity {
-	
+class Player : AnimableEntity<PlayerAnimation> {
 	constructor(textures: Textures) : super(
 		id = -1,
 		texture = textures.player,
@@ -28,13 +28,17 @@ class Player : Entity {
 			height = 32.toDouble(),
 		),
 		layer = 10,
+		animation = PlayerAnimation()
 	) {
 	}
 	
 	override fun render(game: Game) {
+		animation.loop()
+		val spritePos = animation.spritePosition()
+		
 		val source = Rectangle(
-			x = spritesheetPosition.x,
-			y = spritesheetPosition.y,
+			x = spritePos.x,
+			y = spritePos.y,
 			width = size.x,
 			height = size.y
 		)
@@ -52,21 +56,41 @@ class Player : Entity {
 	}
 	
 	override fun handleKeyboardEvents(game: Game, delta: Float) {
+		animation.updateTime(delta)
+		
 		val displacement = PLAYER_SPEED * delta
 		
-		val movement = position.copy()
-		movement.x -= handleMove(game.keyboardLayout.playerLeft, displacement)
-		movement.x += handleMove(game.keyboardLayout.playerRight, displacement)
-		movement.y -= handleMove(game.keyboardLayout.playerTop, displacement)
-		movement.y += handleMove(game.keyboardLayout.playerBottom, displacement)
-		
-		if (checkCollisions(game, Vector2(movement.x, position.y + 32))) {
-			position.x = movement.x
-			collisionRect.x = movement.x
+		val movement = Vector2.zero()
+		onMove(game.keyboardLayout.playerLeft) {
+			movement.x -= displacement
+			animation.sprite = PlayerSprite.Left
 		}
-		if (checkCollisions(game, Vector2(position.x, movement.y + 32))) {
-			position.y = movement.y
-			collisionRect.y = movement.y + size.y
+		onMove(game.keyboardLayout.playerRight) {
+			movement.x += displacement
+			animation.sprite = PlayerSprite.Right
+		}
+		onMove(game.keyboardLayout.playerTop) {
+			movement.y -= displacement
+			animation.sprite = PlayerSprite.Top
+		}
+		onMove(game.keyboardLayout.playerBottom) {
+			movement.y += displacement
+			animation.sprite = PlayerSprite.Bottom
+		}
+		
+		if (movement.isZero()) {
+			animation.state = PlayerState.Idle
+		} else {
+			animation.state = PlayerState.Moving
+			
+			if (checkCollisions(game, Vector2(position.x + movement.x, position.y + 32))) {
+				position.x += movement.x
+				collisionRect.x += movement.x
+			}
+			if (checkCollisions(game, Vector2(position.x, position.y + movement.y + 32))) {
+				position.y += movement.y
+				collisionRect.y += movement.y + size.y
+			}
 		}
 	}
 	
@@ -74,12 +98,9 @@ class Player : Entity {
 		return game.world.findSolidTilesMatchingDirection(position).isEmpty()
 	}
 	
-	private fun handleMove(key: Int, displacement: Float): Float {
+	private fun onMove(key: Int, callback: () -> Unit) {
 		if (Raylib.IsKeyDown(key)) {
-			return displacement
+			callback()
 		}
-		
-		return 0F
 	}
-	
 }

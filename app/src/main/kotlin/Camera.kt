@@ -1,7 +1,7 @@
 package fr.vcernuta.app
 
 import com.raylib.Raylib
-import fr.vcernuta.app.entities.Player
+import fr.vcernuta.app.entities.player.Player
 import fr.vcernuta.app.game.Game
 import fr.vcernuta.app.utils.Constants
 import fr.vcernuta.utils.wrappers.Vector2

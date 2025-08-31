@@ -2,7 +2,7 @@ package fr.vcernuta.app.game
 
 import com.raylib.Raylib
 import fr.vcernuta.app.Camera
-import fr.vcernuta.app.entities.Player
+import fr.vcernuta.app.entities.player.Player
 import fr.vcernuta.app.renderer.Renderer
 import fr.vcernuta.app.utils.KeyboardLayout
 import fr.vcernuta.app.utils.Textures
